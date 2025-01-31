@@ -24,6 +24,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { SelectLoggedInUser } from "../features/auth/AuthSlice";
+import PropTypes from "prop-types";
 
 export const Sidebar = ({ isOpen, onSidebarToggle }) => {
   const [showProfile, setShowProfile] = useState(false);
@@ -77,7 +78,9 @@ export const Sidebar = ({ isOpen, onSidebarToggle }) => {
           variant="h4"
           component="div"
           style={{ fontWeight: "bold", cursor: "pointer" }}
-          onClick={() => setShowProfile(false)}
+          onClick={() => {
+            setShowProfile(false); // Hide profile section
+          }}
         >
           FinTech
         </Typography>
@@ -123,14 +126,18 @@ export const Sidebar = ({ isOpen, onSidebarToggle }) => {
             mt: "auto",
           }}
         >
-          <Avatar
-            alt="Shedrack Okunda"
-            src=""
-            sx={{ width: 64, height: 64, mb: 1 }}
-          />
-          <Typography variant="body1" sx={{ fontWeight: "bold" }}>
-            My Profile
-          </Typography>
+          <Box
+            sx={{ display: "flex", alignItems: "center", cursor: "pointer" }}
+          >
+            <Avatar
+              alt="Shedrack Okunda"
+              src=""
+              sx={{ width: 40, height: 40, mb: 1 }} // Smaller avatar
+            />
+            <Typography variant="body1" sx={{ fontWeight: "bold", ml: 1 }}>
+              My Profile
+            </Typography>
+          </Box>
           <List>
             <ListItem button>
               <ListItemText primary="Beneficiaries" />
@@ -161,7 +168,7 @@ export const Sidebar = ({ isOpen, onSidebarToggle }) => {
         <Avatar
           alt="Shedrack Okunda"
           src=""
-          sx={{ width: 64, height: 64, mb: 1 }}
+          sx={{ width: 60, height: 60, mb: 1 }}
         />
         <Typography variant="body1" sx={{ fontWeight: "bold" }}>
           Shedrack Okunda
@@ -174,4 +181,9 @@ export const Sidebar = ({ isOpen, onSidebarToggle }) => {
       </IconButton>
     </Drawer>
   );
+};
+
+Sidebar.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onSidebarToggle: PropTypes.func.isRequired,
 };

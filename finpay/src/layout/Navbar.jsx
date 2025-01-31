@@ -22,6 +22,7 @@ import {
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { SelectLoggedInUser } from "../features/auth/AuthSlice";
+import PropTypes from "prop-types";
 
 const actions = [
   { icon: <RocketLaunchRounded />, text: "Send Money" },
@@ -154,4 +155,8 @@ export const Navbar = ({ onSidebarToggle }) => {
       </AppBar>
     </>
   );
+};
+
+Navbar.propTypes = {
+  onSidebarToggle: PropTypes.func.isRequired,
 };
